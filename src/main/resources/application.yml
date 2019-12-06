@@ -1,0 +1,29 @@
+server:
+  servlet:
+    context-path: /laterProject
+
+
+spring:
+  redis:
+    host: 192.168.106.134
+    port: 6379
+    database: 0
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+  profiles:
+    active:  dev  # 激活测试配置
+  http:
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 90MB
+
+

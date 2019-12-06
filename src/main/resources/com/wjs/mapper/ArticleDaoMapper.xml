@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wjs.dao.ArticleDao">
+
+
+
+    <select id="queryByPage" resultType="Article">
+       select a.id,a.name,a.picpath,a.content,a.createDate,a.publishDate,a.status,a.masterId,
+			 m.id `master.id`,m.realname `master.realname`,m.nickName `master.nickName`,m.face `master.face`
+	   from (SELECT id,name,picpath,content,createDate,publishDate,status,masterId from article
+			 limit #{start},#{rows}) a
+			 left join master m on a.masterId = m.id
+    </select>
+
+
+</mapper>
