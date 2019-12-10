@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 
 @Component
@@ -14,10 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class Admin implements Serializable {
-    @Id
+public class Resource implements Serializable {
     private String id;
-    private String username;
-    private String password;
-    private String salt;
+    private String name;
 }

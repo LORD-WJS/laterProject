@@ -5,8 +5,7 @@
   Time: 16:23
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false" %>
-<%@ page import="java.util.*,com.wjs.entity.*" %>
+<%@ page language="java" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -55,7 +54,9 @@
             }
             //ajax去服务器端校验
             $.post('${path}/admin/login',{username:$('#username').val(),password:$('#password').val(),captchaCode:$('#captchaCode').val()},(result)=>{
-                if (true){
+                //alert(result=='success');
+                //if(result=='success'){
+                if (true) {
                     window.location.href='${path}/back/index.jsp';
                 }else{
                     $('#msg').text(result);

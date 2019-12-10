@@ -4,7 +4,6 @@ import com.wjs.entity.Admin;
 import com.wjs.service.AdminService;
 import com.wjs.util.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,9 +25,11 @@ public class AdminController {
         if(securityCode.equals(captchaCode)){//验证码正确
             Admin admin = adminService.findByUsername(username);
             if(admin!=null){
+                String salt = admin.getSalt();
+                password = MD5Utils.getPassword(salt + password);
                 if(password.equals(admin.getPassword())) {
                     session.setAttribute("admin",username);
-                    return "ture";
+                    return "success";
                 }
                 else return "密码错误";
             }else{

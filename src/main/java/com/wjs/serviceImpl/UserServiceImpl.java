@@ -1,8 +1,9 @@
 package com.wjs.serviceImpl;
 
+import com.wjs.annotation.AddRedisCache;
+import com.wjs.annotation.DelRedisCache;
 import com.wjs.annotation.GoEasyAnnotation;
 import com.wjs.dao.UserDao;
-import com.wjs.entity.Album;
 import com.wjs.entity.PageBean;
 import com.wjs.entity.User;
 import com.wjs.service.UserService;
@@ -37,6 +38,7 @@ public class UserServiceImpl implements UserService {
     }
     @GoEasyAnnotation(value = "已刷新用户注册信息")
     @Override
+    @DelRedisCache
     public Map<String, String> remove(User user) {
         try{
             userDao.delete(user);
@@ -50,7 +52,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+
     @Override
+    @DelRedisCache
     public Map<String, String> modify(User user) {
         try{
             userDao.updateByPrimaryKeySelective(user);
@@ -75,6 +79,7 @@ public class UserServiceImpl implements UserService {
         }
     }
     @Override
+    @AddRedisCache
     public PageBean<User> findByPage(Integer page, Integer rows) {
         try{
             //1调用dao层查询总记录数

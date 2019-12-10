@@ -1,21 +1,18 @@
-import com.wjs.dao.AdminDao;
-import com.wjs.dao.ArticleDao;
-import com.wjs.dao.BannerDao;
-import com.wjs.dao.UserDao;
+import com.wjs.dao.*;
 import com.wjs.entity.*;
 import com.wjs.laterProjectApplication;
-import com.wjs.service.*;
+import com.wjs.service.AdminService;
+import com.wjs.service.AlbumService;
+import com.wjs.service.ArticleService;
+import com.wjs.service.BannerService;
 import com.wjs.util.DateTools;
 import com.wjs.util.MD5Utils;
-import com.wjs.util.MusicUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -37,7 +34,23 @@ public class TestService {
     private UserDao userDao;
     @Autowired
     private AlbumService albumService;
+    @Autowired
+    private RoleDao roleDao;
+    @Autowired
+    private ResourceDao resourceDao;
 
+
+    @Test
+    public void queryResourceByUsername() {
+        List<Resource> admin = resourceDao.queryByUsername("admin");
+        System.out.println(admin);
+    }
+
+    @Test
+    public void queryRoleByUsername() {
+        List<Role> admin = roleDao.queryByUsername("admin");
+        System.out.println(admin);
+    }
 
     @Test
     public void queryNewArticle(){

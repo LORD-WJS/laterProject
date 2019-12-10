@@ -1,3 +1,5 @@
+
+--用户表
 create table user(
 id varchar(50) primary key ,
 username varchar(50),--法名
@@ -106,7 +108,7 @@ userId varchar (50),
 courseId varchar(50)
 );
 
-
+--管理员表
 create table admin(
 id varchar (50) primary key ,
 username varchar (50),
@@ -122,16 +124,39 @@ masterId varchar (50),
 userId varchar (50)
 );
 
+--角色表
+create table role(
+id varchar (50) primary key ,
+name varchar (50)
+);
+insert into role values('1','user');
+insert into role values('2','vip');
+insert into role values('3','admin');
+insert into role values('4','superAdmin');
+
+--用户角色中间表(用户即为使用者,含前台用户 后台管理员)
+create table userRole(
+id varchar (50) primary key ,
+userId varchar (50),
+roleId varchar (50)
+);
+insert into userRole values('1','1','3');
+
+--权限资源表
+create table resource(
+id varchar (50) primary key ,
+name varchar (100)
+);
+insert into resource values('1','user:*');
 
 
-
-
-
-
-
-
-
-
+--角色权限关系表
+create table roleResource(
+id varchar (50) primary key ,
+roleId varchar (50),
+resourceId varchar (50)
+);
+insert into roleResource values('1','3',1);
 
 
 
